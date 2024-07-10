@@ -15,7 +15,7 @@
             <div class="table-top">
                 <div class="search-set">
                     <div class="search-input">
-                        <a class="btn btn-searchset"><img src="{{ asset('storage/admin/img/icons/search-white.svg') }}"
+                        <a class="btn btn-searchset"><img src="{{ asset('admin/img/icons/search-white.svg') }}"
                                 alt="img"></a>
                     </div>
                 </div>

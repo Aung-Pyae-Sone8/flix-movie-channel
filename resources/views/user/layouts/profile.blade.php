@@ -46,7 +46,7 @@
         <div class="container">
             <div class="anime__details__btn mb-5" style="margin-bottom: 20px;">
                 {{-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a> --}}
-                <a href="javascript:history.back()" class="watch-btn"><span>Back</span></a>
+                <a href="{{ route('user#home') }}" class="watch-btn"><span>Back</span></a>
             </div>
             @if (session('updateSuccess'))
                 <div class="row">

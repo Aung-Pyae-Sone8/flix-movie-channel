@@ -24,18 +24,7 @@
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> --}}
-    {{-- @if ('otherCss')
 
-        <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/plyr.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
-    @endif --}}
 </head>
 
 <body>

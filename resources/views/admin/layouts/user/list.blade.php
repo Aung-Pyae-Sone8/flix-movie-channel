@@ -24,7 +24,7 @@
             <div class="table-top">
                 <div class="search-set">
                     <div class="search-input">
-                        <a class="btn btn-searchset"><img src="{{ asset('storage/admin/img/icons/search-white.svg') }}"
+                        <a class="btn btn-searchset"><img src="{{ asset('admin/img/icons/search-white.svg') }}"
                                 alt="img"></a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                         @if ($user->image != null)
                                             <img src="{{ asset('storage/images/user/' . $user->image) }}" alt="user image">
                                         @else
-                                            <img src="{{ asset('storage/images/user/default.jpg') }}" alt="user image">
+                                            <img src="{{ asset('images/default.jpg') }}" alt="user image">
                                         @endif
                                     </a>
                                     <a href="javascript:void(0);">{{ $user->name }}</a>
@@ -75,12 +75,6 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{-- <a class="me-3" href="product-details.html">
-                                        <img src="{{ asset('storage/admin/img/icons/eye.svg') }}" alt="img">
-                                    </a> --}}
-                                    {{-- <a class="me-3" href="editproduct.html">
-                                        <img src="{{ asset('storage/admin/img/icons/edit.svg') }}" alt="img">
-                                    </a> --}}
                                     @if (Auth::user()->email == 'admin@gmail.com')
                                         @if ($user->role == 'user')
                                             <form action="{{ route('user#promote') }}" method="POST">
@@ -102,7 +96,7 @@
                                         <form action="{{ route('admin#deleteUser', $user->id) }}">
                                             @csrf
                                             <button class="btn btn-outline-danger" type="submit">
-                                                <img src="{{ asset('storage/admin/img/icons/delete.svg') }}" alt="img">
+                                                <img src="{{ asset('admin/img/icons/delete.svg') }}" alt="img">
                                             </button>
                                         </form>
                                     @endif
