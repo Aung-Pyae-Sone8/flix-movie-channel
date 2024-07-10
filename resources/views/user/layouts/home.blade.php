@@ -142,7 +142,7 @@
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
                     <a href="{{ route('user#movieDetail', $movie->id) }}" class="movie-item">
-                        <img src="{{ asset('images/movies/' . $movie->image) }}" alt="">
+                        <img src="{{ asset('storage/images/movies/' . $movie->image) }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->name }}

@@ -40,12 +40,12 @@
                                     <img src="{{ asset('storage/images/user/' . $data->image) }}" alt="img"
                                         id="blah">
                                 @else
-                                    <img src="{{ asset('storage/images/user/default.jpg') }}" alt="img" id="blah">
+                                    <img src="{{ asset('images/default.jpg') }}" alt="img" id="blah">
                                 @endif
                                 <div class="profileupload">
                                     <input type="file" id="imgInp" name="image">
                                     <a href="javascript:void(0);"><img
-                                            src="{{ asset('storage/admin/img/icons/edit-set.svg') }}" alt="img"></a>
+                                            src="{{ asset('admin/img/icons/edit-set.svg') }}" alt="img"></a>
                                 </div>
                             </div>
                             <div class="profile-contentname">

@@ -63,7 +63,7 @@
                     <li><a href="{{ route('user#cartoon') }}">Cartoon</a></li>
                     <li><a href="{{ route('user#movie') }}">Movies</a></li>
                     <li><a href="{{ route('user#series') }}">Series</a></li>
-                    <li><a href="{{ route('user#profile') }}"><img src="{{ asset('storage/images/movies/call.jpg') }}" style="height: 40px; width: 40px; border-radius: 50%;" alt=""></a></li>
+                    <li><a href="{{ route('user#profile') }}"><img src="{{ asset('storage/images/user/' . Auth::user()->image) }}" style="height: 40px; width: 40px; border-radius: 50%;" alt=""></a></li>
                 </ul>
                 <!-- MOBILE MENU TOGGLE -->
                 <div class="hamburger-menu" id="hamburger-menu">
@@ -138,7 +138,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-3 col-md-6 col-sm-6">
+                        {{-- <div class="col-3 col-md-6 col-sm-6">
                             <div class="content">
                                 <p><b>Download app</b></p>
                                 <ul class="footer-menu">
@@ -154,7 +154,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

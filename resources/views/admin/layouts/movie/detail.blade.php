@@ -86,25 +86,5 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-lg-4 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="slider-product-details">
-                        <div class="owl-carousel owl-theme product-slide">
-                            <div class="slider-product">
-                                <img src="{{ asset('storage/admin/img/product/product69.jpg') }}" alt="img">
-                                <h4>macbookpro.jpg</h4>
-                                <h6>581kb</h6>
-                            </div>
-                            <div class="slider-product">
-                                <img src="assets/img/product/product69.jpg" alt="img">
-                                <h4>macbookpro.jpg</h4>
-                                <h6>581kb</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 @endsection

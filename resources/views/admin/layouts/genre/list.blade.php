@@ -6,7 +6,7 @@
         </div>
         <div class="page-btn">
             <a class="btn btn-added" data-bs-toggle="modal" data-bs-target="#addpayment">
-                <img src="{{ asset('storage/admin/img/icons/plus.svg') }}" alt="img" class="me-1">Add New Genre
+                <img src="{{ asset('admin/img/icons/plus.svg') }}" alt="img" class="me-1">Add New Genre
             </a>
         </div>
     </div>
@@ -67,10 +67,10 @@
                                         <td>{{ $d->created_at->format('Y/m/d') }}</td>
                                         <td>
                                             <a class="me-3" href="{{ route('genre#edit', $d->id) }}">
-                                                <img src="{{ asset('storage/admin/img/icons/edit.svg') }}" alt="img">
+                                                <img src="{{ asset('admin/img/icons/edit.svg') }}" alt="img">
                                             </a>
                                             <a class="me-3" href="{{ route('genre#delete', $d->id) }}">
-                                                <img src="{{ asset('storage/admin/img/icons/delete.svg') }}" alt="img">
+                                                <img src="{{ asset('admin/img/icons/delete.svg') }}" alt="img">
                                             </a>
                                         </td>
                                     </tr>

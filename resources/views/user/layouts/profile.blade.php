@@ -79,7 +79,7 @@
                                 <div style="height: 205px; width: 200px; border: 3px solid red; border-radius: 50%;">
                                     @if (Auth::user()->image == null)
                                         <img class="" style="height: 200px; width: 200px; border-radius: 50%;"
-                                            src="{{ asset('storage/images/user/default.jpg') }}" alt="profile picture">
+                                            src="{{ asset('images/default.jpg') }}" alt="profile picture">
                                     @else
                                         <img class="" style="height: 200px; width: 200px; border-radius: 50%;"
                                             src="{{ asset('storage/images/user/' . Auth::user()->image) }}"

@@ -104,7 +104,7 @@
                             <div class="image-upload">
                                 <input type="file" name="movieImage">
                                 <div class="image-uploads">
-                                    <img src="{{ asset('storage/admin/img/icons/upload.svg') }}" alt="img">
+                                    <img src="{{ asset('admin/img/icons/upload.svg') }}" alt="img">
                                     <h4>Drag and drop a file to upload</h4>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                             <div class="image-upload">
                                 <input type="file" name="trailer">
                                 <div class="image-uploads">
-                                    <img src="{{ asset('storage/admin/img/icons/upload.svg') }}" alt="img">
+                                    <img src="{{ asset('admin/img/icons/upload.svg') }}" alt="img">
                                     <h4>Drag and drop a file to upload</h4>
                                 </div>
                             </div>
