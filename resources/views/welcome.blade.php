@@ -78,7 +78,7 @@
             <div class="owl-carousel carousel-nav-center" id="hero-carousel">
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/black-banner.png') }}" alt="">
+                    <img src="{{ asset('images/black-banner.png') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -118,7 +118,7 @@
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/supergirl-banner.jpg') }}" alt="">
+                    <img src="{{ asset('images/supergirl-banner.jpg') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -158,7 +158,7 @@
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/wanda-banner.jpg') }}" alt="">
+                    <img src="{{ asset('images/wanda-banner.jpg') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -270,12 +270,12 @@
                                 <ul class="footer-menu">
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('storage/images/google-play.png') }}" alt="">
+                                            <img src="{{ asset('images/google-play.png') }}" alt="">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('storage/images/app-store.png') }}" alt="">
+                                            <img src="{{ asset('images/app-store.png') }}" alt="">
                                         </a>
                                     </li>
                                 </ul>

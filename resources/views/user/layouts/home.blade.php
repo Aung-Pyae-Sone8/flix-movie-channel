@@ -8,7 +8,7 @@
             <div class="owl-carousel carousel-nav-center" id="hero-carousel">
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/black-banner.png') }}" alt="">
+                    <img src="{{ asset('images/black-banner.png') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -48,7 +48,7 @@
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/supergirl-banner.jpg') }}" alt="">
+                    <img src="{{ asset('images/supergirl-banner.jpg') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -88,7 +88,7 @@
                 <!-- END SLIDE ITEM -->
                 <!-- SLIDE ITEM -->
                 <div class="hero-slide-item">
-                    <img src="{{ asset('storage/images/wanda-banner.jpg') }}" alt="">
+                    <img src="{{ asset('images/wanda-banner.jpg') }}" alt="">
                     <div class="overlay"></div>
                     <div class="hero-slide-item-content">
                         <div class="item-content-wraper">
@@ -141,8 +141,8 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($movies as $movie)
-                    <a href="#" class="movie-item">
-                        <img src="{{ asset('storage/images/movies/theatre-dead.jpg') }}" alt="">
+                    <a href="{{ route('user#movieDetail', $movie->id) }}" class="movie-item">
+                        <img src="{{ asset('images/movies/' . $movie->image) }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $movie->name }}
@@ -159,163 +159,7 @@
                         </div>
                     </a>
                 @endforeach
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                {{-- <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/transformer.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Transformer
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/resident-evil.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Resident Evil
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/captain-marvel.png') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Captain Marvel
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/hunter-killer.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Hunter Killer
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/blood-shot.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Bloodshot
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/movies/call.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Call
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a> --}}
-                <!-- END MOVIE ITEM -->
+
             </div>
         </div>
     </div>
@@ -330,8 +174,8 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($series as $serie)
-                    <a href="#" class="movie-item">
-                        <img src="{{ asset('storage/images/series/supergirl.jpg') }}" alt="">
+                    <a href="{{ route('user#movieDetail', $serie->id) }}" class="movie-item">
+                        <img src="{{ asset('storage/images/movies/' . $serie->image) }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $serie->name }}
@@ -348,163 +192,6 @@
                         </div>
                     </a>
                 @endforeach
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                {{-- <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/stranger-thing.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Stranger Things
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/star-trek.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Star Trek
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/penthouses.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Penthouses
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/mandalorian.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Mandalorian
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/the-falcon.webp') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            The Falcon And The Winter Soldier
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/series/wanda.png') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Wanda Vision
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a> --}}
-                <!-- END MOVIE ITEM -->
             </div>
         </div>
     </div>
@@ -519,8 +206,8 @@
             <div class="movies-slide carousel-nav-center owl-carousel">
                 <!-- MOVIE ITEM -->
                 @foreach ($cartoons as $cartoon)
-                    <a href="#" class="movie-item">
-                        <img src="{{ asset('storage/images/cartoons/demon-slayer.jpg') }}" alt="">
+                    <a href="{{ route('user#movieDetail', $cartoon->id) }}" class="movie-item">
+                        <img src="{{ asset('storage/images/movies/' . $cartoon->image) }}" alt="">
                         <div class="movie-item-content">
                             <div class="movie-item-title">
                                 {{ $cartoon->name }}
@@ -538,249 +225,9 @@
                     </a>
                 @endforeach
                 <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                {{-- <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/croods.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Croods
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/dragon.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Dragonball
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/over-the-moon.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Over The Moon
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/weathering.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Weathering With You
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/your-name.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Your Name
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- END MOVIE ITEM -->
-                <!-- MOVIE ITEM -->
-                <a href="#" class="movie-item">
-                    <img src="{{ asset('storage/images/cartoons/coco.jpg') }}" alt="">
-                    <div class="movie-item-content">
-                        <div class="movie-item-title">
-                            Coco
-                        </div>
-                        <div class="movie-infos">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
-                            </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>HD</span>
-                            </div>
-                            <div class="movie-info">
-                                <span>16+</span>
-                            </div>
-                        </div>
-                    </div>
-                </a> --}}
-                <!-- END MOVIE ITEM -->
             </div>
         </div>
     </div>
     <!-- END LATEST CARTOONS SECTION -->
 
-    <!-- PRICING SECTION -->
-    {{-- <div class="section">
-        <div class="container">
-            <div class="pricing">
-                <div class="pricing-header">
-                    Fl<span class="main-color">i</span>x pricing
-                </div>
-                <div class="pricing-list">
-                    <div class="row">
-                        <div class="col-4 col-md-12 col-sm-12">
-                            <div class="pricing-box">
-                                <div class="pricing-box-header">
-                                    <div class="pricing-name">
-                                        Basic
-                                    </div>
-                                    <div class="pricing-price">
-                                        Free
-                                    </div>
-                                </div>
-                                <div class="pricing-box-content">
-                                    <p>Originals</p>
-                                    <p>Swich plans anytime</p>
-                                    <p><del>65+ top Live</del></p>
-                                    <p><del>TV Channels</del></p>
-                                </div>
-                                <div class="pricing-box-action">
-                                    <a href="#" class="btn btn-hover">
-                                        <span>Register now</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-12 col-sm-12">
-                            <div class="pricing-box hightlight">
-                                <div class="pricing-box-header">
-                                    <div class="pricing-name">
-                                        Premium
-                                    </div>
-                                    <div class="pricing-price">
-                                        $35.99 <span>/month</span>
-                                    </div>
-                                </div>
-                                <div class="pricing-box-content">
-                                    <p>Originals</p>
-                                    <p>Swich plans anytime</p>
-                                    <p><del>65+ top Live</del></p>
-                                    <p><del>TV Channels</del></p>
-                                </div>
-                                <div class="pricing-box-action">
-                                    <a href="#" class="btn btn-hover">
-                                        <span>Register now</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-12 col-sm-12">
-                            <div class="pricing-box">
-                                <div class="pricing-box-header">
-                                    <div class="pricing-name">
-                                        VIP
-                                    </div>
-                                    <div class="pricing-price">
-                                        $65.99 <span>/month</span>
-                                    </div>
-                                </div>
-                                <div class="pricing-box-content">
-                                    <p>Originals</p>
-                                    <p>Swich plans anytime</p>
-                                    <p><del>65+ top Live</del></p>
-                                    <p><del>TV Channels</del></p>
-                                </div>
-                                <div class="pricing-box-action">
-                                    <a href="#" class="btn btn-hover">
-                                        <span>Register now</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- END PRICING SECTION -->
 @endsection
