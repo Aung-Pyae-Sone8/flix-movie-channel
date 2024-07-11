@@ -93,6 +93,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('updateProfile', [UserController::class, 'updateProfile'])->name('user#updateProfile');
             Route::post('changePassword', [UserController::class, 'changePassword'])->name('user#changePassword');
             Route::post('payment', [UserController::class, 'payment'])->name('user#payment');
+            Route::post('comment/post', [UserController::class, 'postComment'])->name('user#postComment');
         });
     });
 

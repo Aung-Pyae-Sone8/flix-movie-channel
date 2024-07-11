@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Payment;
 use App\Models\admin\Genre;
 use App\Models\admin\Movie;
@@ -42,13 +43,21 @@ class UserController extends Controller
     public function all() {
         $movies = Movie::select('movies.*', 'genres.name as genre_name')
                     ->when(request('key'), function($query){
-                        $query->where('movies.name','like','%'.request('key').'%');
+                        $query->orWhere('movies.name','like','%'.request('key').'%')
+                            ->orWhere('movies.director','like','%' . request('key') . '%')
+                            ->orWhere('genres.name','like','%' . request('key') . '%')
+                            ->orWhere('movies.release_year','like','%'.request('key').'%');
                     })
                     ->leftJoin('genres', 'movies.genre_id', 'genres.id')
                     ->orderBy('movies.created_at', 'desc')
                     ->get();
+        if($movies == null){
+            $null = true;
+        }else{
+            $null = false;
+        }
 
-        return view('user.layouts.all', compact('movies'));
+        return view('user.layouts.all', compact('movies', 'null'));
     }
 
     // direct cartoon page
@@ -87,7 +96,13 @@ class UserController extends Controller
         $genre = Genre::where('id', $movie->genre_id)->first();
         $genreName = $genre->name;
         // dd($movie);
-        return view('user.layouts.movieDetail', compact('movie','genreName'))->with(['otherCss'=>'for other']);
+        $comments = Comment::select('comments.*', 'users.name as user_name', 'users.image as user_image')
+                        ->where('movie_id', $id)
+                        ->leftJoin('users', 'comments.user_id', 'users.id')
+                        ->orderBy('comments.created_at', 'desc')
+                        ->get();
+        // dd($comments);
+        return view('user.layouts.movieDetail', compact('movie','genreName', 'comments'))->with(['otherCss'=>'for other']);
     }
 
     // direct user profile page
@@ -194,6 +209,22 @@ class UserController extends Controller
         $role['type'] = 'free';
         User::where('id', $request->userId)->update($role);
         return redirect()->route('user#list');
+    }
+
+    // post comment
+    public function postComment(Request $request) {
+        $data = $this->getComment($request);
+        $data['user_id'] = Auth::user()->id;
+        Comment::create($data);
+        return back()->with(['postComment' => 'Posted ...']);
+    }
+
+    // get comments
+    private function getComment($request) {
+        return [
+            'comment' => $request->comment,
+            'movie_id' => $request
+        ];
     }
 
     // update profile validation check

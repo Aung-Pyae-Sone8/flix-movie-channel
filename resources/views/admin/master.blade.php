@@ -62,23 +62,35 @@
 
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                        <span class="user-img"><img src="{{ asset('storage/images/user/'. Auth::user()->image) }}"
-                                alt="">
-                            <span class="status online"></span></span>
+                        <span class="user-img">
+                            @if (Auth::user()->image != null)
+                                <img src="{{ asset('storage/images/user/' . Auth::user()->image) }}" alt="">
+                            @else
+                                <img src="{{ asset('images/default.jpg') }}" alt="">
+                            @endif
+                            <span class="status online"></span>
+                        </span>
                     </a>
                     <div class="dropdown-menu menu-drop-user">
                         <div class="profilename">
                             <div class="profileset">
-                                <span class="user-img"><img
-                                        src="{{ asset('storage/images/user/'. Auth::user()->image) }}" alt="">
-                                    <span class="status online"></span></span>
+                                <span class="user-img">
+                                    @if (Auth::user()->image != null)
+                                        <img src="{{ asset('storage/images/user/' . Auth::user()->image) }}"
+                                            alt="">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" alt="">
+                                    @endif
+                                    <span class="status online"></span>
+                                </span>
                                 <div class="profilesets">
                                     <h6>{{ Auth::user()->name }}</h6>
                                     <h5>{{ Auth::user()->email }}</h5>
                                 </div>
                             </div>
                             <hr class="m-0">
-                            <a class="dropdown-item" href="{{ route('admin#profile', Auth::user()->id) }}"> <i class="me-2" data-feather="user"></i>
+                            <a class="dropdown-item" href="{{ route('admin#profile', Auth::user()->id) }}"> <i
+                                    class="me-2" data-feather="user"></i>
                                 My Profile</a>
                             {{-- <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
                                     data-feather="settings"></i>Settings</a>
@@ -86,8 +98,8 @@
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button class="dropdown-item logout pb-0"><img
-                                    src="{{ asset('admin/img/icons/log-out.svg') }}" class="me-2"
-                                    alt="img">Logout</button>
+                                        src="{{ asset('admin/img/icons/log-out.svg') }}" class="me-2"
+                                        alt="img">Logout</button>
                             </form>
                         </div>
                     </div>
@@ -118,8 +130,8 @@
                             </a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img
-                                    src="{{ asset('admin/img/icons/product.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}"
+                                    alt="img"><span>
                                     Lists</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ route('genre#list') }}">Genres List</a></li>

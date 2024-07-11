@@ -44,7 +44,7 @@
         <div class="container">
             <div class="anime__details__btn" style="margin-bottom: 20px;">
                 {{-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a> --}}
-                <a href="javascript:history.back()" class="watch-btn"><span>Back</span></a>
+                <a href="{{ route('user#all') }}" class="watch-btn"><span>Back</span></a>
             </div>
             <div class="anime__details__content">
                 <div class="row">
@@ -56,7 +56,7 @@
                                 src="{{ asset('storage/images/movies/' . $movie->image) }}" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-8 offset-1">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <h3>{{ $movie->name }}</h3>
@@ -115,7 +115,45 @@
                         <track kind="captions" label="English captions" src="#" srclang="en" default />
                     </video>
                 </div>
+            </div>
+            <div class="row mt-5">
+                <div>
+                    <h3 class="text-white mb-3">Comments</h3>
+                    <form action="{{ route('user#postComment') }}" method="POST">
+                        <div class="row">
+                            @csrf
+                            <input type="hidden" name="movieId" value="{{ $movie->id }}">
+                            <div class="col-lg-6 col-md-6">
+                                <textarea name="comment" cols="50" rows="3" placeholder="Write your comment ..." class="form-control"></textarea>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <button type="submit" class="btn btn-danger">Post</button>
+                            </div>
 
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="row mt-5 border border-secondary rounded-lg p-3"
+                style="height: 500px; background-color:rgb(43, 45, 46); overflow-y: scroll;">
+                @foreach ($comments as $comment)
+                    <div class="px-5 py-2 mb-2">
+                        <h5>
+                            @if ($comment->user_image != null)
+                                <img src="{{ asset('storage/images/user/' . $comment->user_image) }}"
+                                    style="width: 30px; height: 30px; border-radius:50%; margin-right:5px;"
+                                    alt="">
+                            @else
+                                <img src="{{ asset('images/default.jpg') }}"
+                                    style="width: 30px; height: 30px; border-radius:50%; margin-right:5px;"
+                                    alt="">
+                            @endif
+                            <span class="text-white">{{ $comment->user_name }}</span>
+                        </h5>
+                        <p class="text-muted px-4 mt-2">{{ $comment->comment }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
