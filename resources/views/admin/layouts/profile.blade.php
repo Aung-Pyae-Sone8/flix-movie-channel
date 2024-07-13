@@ -80,7 +80,7 @@
                     <div class="col-lg-6 col-sm-12">
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" name="address" value="{{ old('address', $data->address) }} class="@error('address') is-invalid @enderror"">
+                            <input type="text" name="address" value="{{ old('address', $data->address) }}" class="@error('address') is-invalid @enderror">
                             @error('address')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
