@@ -223,7 +223,7 @@ class UserController extends Controller
     private function getComment($request) {
         return [
             'comment' => $request->comment,
-            'movie_id' => $request
+            'movie_id' => $request->movieId,
         ];
     }
 
