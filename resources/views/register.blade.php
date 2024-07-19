@@ -31,7 +31,7 @@
         <div class="loader"></div>
     </div>
 
-    <a href="javascript:history.back()" class="site-btn" style="margin: 20px 0px 0px 20px;">Back</a>
+    <a href="{{ route('welcome') }}" class="site-btn" style="margin: 20px 0px 0px 20px;">Back</a>
 
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">

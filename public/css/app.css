@@ -255,6 +255,11 @@ a.movie-item:hover {
     font-weight: 900;
 }
 
+.movie-favourate{
+    width: 30px;
+
+}
+
 .movie-infos {
     display: flex;
     align-items: center;

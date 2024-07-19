@@ -92,13 +92,15 @@
                             </div>
                             <div class="anime__details__btn">
                                 {{-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a> --}}
-                                @if (Auth::user()->type == 'free' || Auth::user()->type == 'pending')
-                                    <a href="{{ route('user#payment') }}" class="watch-btn"><span>Download</span> <i
-                                            class="fa fa-angle-right"></i></a>
-                                @endif
-                                @if (Auth::user()->type == 'premium')
-                                    <a href="{{ $movie->movie_url }}" class="watch-btn"><span>Download</span> <i
-                                            class="fa fa-angle-right"></i></a>
+                                @if (Auth::user())
+                                    @if (Auth::user()->type == 'free' || Auth::user()->type == 'pending')
+                                        <a href="{{ route('user#payment') }}" class="watch-btn"><span>Download</span>
+                                            <i class="fa fa-angle-right"></i></a>
+                                    @endif
+                                    @if (Auth::user()->type == 'premium')
+                                        <a href="{{ $movie->movie_url }}" class="watch-btn"><span>Download</span> <i
+                                                class="fa fa-angle-right"></i></a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -119,19 +121,21 @@
             <div class="row mt-5">
                 <div>
                     <h3 class="text-white mb-3">Comments</h3>
-                    <form action="{{ route('user#postComment') }}" method="POST">
-                        <div class="row">
-                            @csrf
-                            <input type="hidden" name="movieId" value="{{ $movie->id }}">
-                            <div class="col-lg-6 col-md-6">
-                                <textarea name="comment" cols="50" rows="3" placeholder="Write your comment ..." class="form-control"></textarea>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <button type="submit" class="btn btn-danger">Post</button>
-                            </div>
+                    @if (Auth::user())
+                        <form action="{{ route('user#postComment') }}" method="POST">
+                            <div class="row">
+                                @csrf
+                                <input type="hidden" name="movieId" value="{{ $movie->id }}">
+                                <div class="col-lg-6 col-md-6">
+                                    <textarea name="comment" cols="50" rows="3" placeholder="Write your comment ..." class="form-control"></textarea>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <button type="submit" class="btn btn-danger">Post</button>
+                                </div>
 
-                        </div>
-                    </form>
+                            </div>
+                        </form>
+                    @endif
 
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -20,11 +21,19 @@ use App\Http\Controllers\MovieController;
 */
 
 Route::middleware('admin_auth')->group(function () {
-    Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+//     Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
+Route::get('/', [AuthController::class, 'welcome'])->name('welcome');
 Route::get('loginPage', [AuthController::class, 'loginPage'])->name('auth#loginPage');
 Route::get('registerPage', [AuthController::class, 'registerPage'])->name('auth#registerPage');
+Route::get('home', [UserController::class, 'userHome'])->name('user#home');
+            Route::get('all', [UserController::class, 'all'])->name('user#all');
+            Route::get('cartoon', [UserController::class, 'cartoon'])->name('user#cartoon');
+            Route::get('movie', [UserController::class, 'movie'])->name('user#movie');
+            Route::get('series', [UserController::class, 'series'])->name('user#series');
+            Route::get('movie/details/{id}', [UserController::class, 'movieDetail'])->name('user#movieDetail');
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -82,18 +91,15 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('userHome', [UserController::class, 'userHome'])->name('user#home');
 
         Route::prefix('user')->group(function() {
-            Route::get('home', [UserController::class, 'userHome'])->name('user#home');
-            Route::get('all', [UserController::class, 'all'])->name('user#all');
-            Route::get('cartoon', [UserController::class, 'cartoon'])->name('user#cartoon');
-            Route::get('movie', [UserController::class, 'movie'])->name('user#movie');
-            Route::get('series', [UserController::class, 'series'])->name('user#series');
-            Route::get('movie/details/{id}', [UserController::class, 'movieDetail'])->name('user#movieDetail');
+
             Route::get('profile', [UserController::class, 'profile'])->name('user#profile');
             Route::get('payment', [UserController::class, 'paymentPage'])->name('user#paymentPage');
             Route::post('updateProfile', [UserController::class, 'updateProfile'])->name('user#updateProfile');
             Route::post('changePassword', [UserController::class, 'changePassword'])->name('user#changePassword');
             Route::post('payment', [UserController::class, 'payment'])->name('user#payment');
             Route::post('comment/post', [UserController::class, 'postComment'])->name('user#postComment');
+
+            Route::get('ajax/addFavourate', [AjaxController::class, 'addFavourate'])->name('ajax#addFavourate');
         });
     });
 

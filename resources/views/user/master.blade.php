@@ -20,9 +20,9 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
     {{-- font awesome  --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -55,15 +55,21 @@
                     <li><a href="{{ route('user#movie') }}">Movies</a></li>
                     <li><a href="{{ route('user#series') }}">Series</a></li>
                     <li>
-                        <a href="{{ route('user#profile') }}">
-                            @if (Auth::user()->image != null)
-                                <img src="{{ asset('storage/images/user/' . Auth::user()->image) }}"
-                                    style="height: 40px; width: 40px; border-radius: 50%;" alt="">
-                            @else
-                                <img src="{{ asset('images/default.jpg') }}"
-                                style="height: 40px; width: 40px; border-radius: 50%;" alt="">
-                            @endif
-                        </a>
+                        @if (Auth::user())
+                            <a href="{{ route('user#profile') }}">
+                                @if (Auth::user()->image != null)
+                                    <img src="{{ asset('storage/images/user/' . Auth::user()->image) }}"
+                                        style="height: 40px; width: 40px; border-radius: 50%;" alt="">
+                                @else
+                                    <img src="{{ asset('images/default.jpg') }}"
+                                        style="height: 40px; width: 40px; border-radius: 50%;" alt="">
+                                @endif
+                            </a>
+                        @else
+                            <a href="{{ route('auth#loginPage') }}" class="btn btn-hover">
+                                <span>Sign in</span>
+                            </a>
+                        @endif
                     </li>
                 </ul>
                 <!-- MOBILE MENU TOGGLE -->
@@ -191,6 +197,35 @@
     <script src="{{ asset('js/player.js') }}"></script> --}}
 
 </body>
+@yield('scriptSource')
+<script>
+    $(document).ready(function() {
+        $('.addFavourate').click(function() {
+            console.log('hello world');
+            event.preventDefault();
+            $source = {
+                // 'userId': $('#userId').val(),
+                'movieId': $('#movieId').val(),
+                'status': true
+            };
+            console.log($source);
+
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:8000/user/ajax/addFavourate',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: $source,
+                success: function(response) {
+                    if (response.status == 'success') {
+                        console.log('success');
+                    }
+                }
+            })
+        })
+    })
+</script>
 
 </html>
 

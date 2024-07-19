@@ -56,6 +56,20 @@
                     <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
                 </a>
                 <ul class="nav-menu" id="nav-menu">
+                    <form action="{{ route('user#all') }}" class="search-box" method="GET">
+                        @csrf
+                        <div class="search ">
+                            <input type="text" placeholder="Search ..." name="key" value="{{ request('key') }}">
+                        </div>
+                        <div class="src-btn">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                    <li><a href="{{ route('user#home') }}">Home</a></li>
+                    <li><a href="{{ route('user#all') }}">All</a></li>
+                    <li><a href="{{ route('user#cartoon') }}">Cartoon</a></li>
+                    <li><a href="{{ route('user#movie') }}">Movies</a></li>
+                    <li><a href="{{ route('user#series') }}">Series</a></li>
                     <li>
                         <a href="{{ route('auth#loginPage') }}" class="btn btn-hover">
                             <span>Sign in</span>
@@ -201,6 +215,107 @@
         <!-- END HERO SLIDE -->
     </div>
     <!-- END HERO SECTION -->
+    <!-- LATEST MOVIES SECTION -->
+    <div class="section">
+        <div class="container">
+            <div class="section-header">
+                latest movies
+            </div>
+            <div class="movies-slide carousel-nav-center owl-carousel">
+                <!-- MOVIE ITEM -->
+                @foreach ($movies as $movie)
+                    <a href="{{ route('user#movieDetail', $movie->id) }}" class="movie-item">
+                        <img src="{{ asset('storage/images/movies/' . $movie->image) }}" alt="">
+                        <div class="movie-item-content">
+                            <div class="movie-item-title">
+                                {{ $movie->name }}
+                            </div>
+                            <div class="movie-infos">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>{{ $movie->rating }}</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>HD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <!-- END LATEST MOVIES SECTION -->
+
+    <!-- LATEST SERIES SECTION -->
+    @if ($series)
+        <div class="section">
+            <div class="container">
+                <div class="section-header">
+                    latest series
+                </div>
+                <div class="movies-slide carousel-nav-center owl-carousel">
+                    <!-- MOVIE ITEM -->
+                    @foreach ($series as $serie)
+                        <a href="{{ route('user#movieDetail', $serie->id) }}" class="movie-item">
+                            <img src="{{ asset('storage/images/movies/' . $serie->image) }}" alt="">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{ $serie->name }}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>{{ $serie->rating }}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>HD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- END LATEST SERIES SECTION -->
+
+    <!-- LATEST CARTOONS SECTION -->
+    @if ($cartoons)
+        <div class="section">
+            <div class="container">
+                <div class="section-header">
+                    latest cartoons
+                </div>
+                <div class="movies-slide carousel-nav-center owl-carousel">
+                    <!-- MOVIE ITEM -->
+                    @foreach ($cartoons as $cartoon)
+                        <a href="{{ route('user#movieDetail', $cartoon->id) }}" class="movie-item">
+                            <img src="{{ asset('storage/images/movies/' . $cartoon->image) }}" alt="">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{ $cartoon->name }}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>{{ $cartoon->rating }}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>HD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                    <!-- END MOVIE ITEM -->
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- END LATEST CARTOONS SECTION -->
 
     <!-- FOOTER SECTION -->
     <footer class="section">

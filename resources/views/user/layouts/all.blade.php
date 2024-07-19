@@ -16,19 +16,34 @@
                                     <div class="movie-item-title">
                                         {{ $movie->name }}
                                     </div>
+                                    @if (Auth::user())
+                                        <input type="hidden" id="userId" value="{{ Auth::user()->id }}">
+                                    @endif
+                                    <input type="hidden" id="movieId" value="{{ $movie->id }}">
                                     <div class="movie-infos">
                                         <div class="movie-info">
-                                            <i class="bx bxs-star"></i>
-                                            <span>{{ $movie->rating }}</span>
+                                            <div class="movie-info">
+                                                <i class="bx bxs-star bxs-blue"></i>
+                                                <span>{{ $movie->rating }}</span>
+                                            </div>
+                                            <div class="movie-info">
+                                                {{ $movie->genre_name }}
+                                            </div>
+                                            <div class="movie-info">
+                                                <span>HD</span>
+                                            </div>
+                                            <div class="movie-info">
+                                                <span>{{ $movie->type }}</span>
+                                            </div>
                                         </div>
-                                        <div class="movie-info">
-                                            {{ $movie->genre_name }}
-                                        </div>
-                                        <div class="movie-info">
-                                            <span>HD</span>
-                                        </div>
-                                        <div class="movie-info">
-                                            <span>{{ $movie->type }}</span>
+                                        <div class="movie-favourate"
+                                            style="position: absolute; margin-left:22em; margin-bottom:50px; border-radius: 50%;">
+                                            {{-- <img style="width: 30px; height: 30px;" src="{{ asset('images/pink-heart.png') }}" alt=""> --}}
+                                            <button class="addFavourate" type="button"
+                                                style="width: 50px; height: 50px; padding: 10px; background-color: black; outline: none;">
+                                                <img style="margin-top:10px; margin-left:10px;"
+                                                    src="{{ asset('images/pink-heart.png') }}" alt="">
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -36,9 +51,9 @@
                         </div>
                     @endforeach
                 @else
-                <div class="col-12">
-                    <h2>There is no movie ...</h2>
-                </div>
+                    <div class="col-12">
+                        <h2>There is no movie ...</h2>
+                    </div>
                 @endif
             </div>
         </div>
