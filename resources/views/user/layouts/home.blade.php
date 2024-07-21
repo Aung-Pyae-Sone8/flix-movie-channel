@@ -133,6 +133,41 @@
     <!-- END HERO SECTION -->
 
     <!-- LATEST MOVIES SECTION -->
+    @if (Auth::user())
+        <div class="section">
+            <div class="container">
+                <div class="section-header">
+                    recent movies
+                </div>
+                <div class="movies-slide carousel-nav-center owl-carousel">
+                    <!-- MOVIE ITEM -->
+                    @foreach ($recentViews as $recentView)
+                        <a href="{{ route('user#movieDetail', $recentView->movie->id) }}" class="movie-item">
+                            <img src="{{ asset('storage/images/movies/' . $recentView->movie->image) }}" alt="">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{ $recentView->movie->name }}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>{{ $recentView->movie->rating }}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>HD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- END LATEST MOVIES SECTION -->
+
+    <!-- LATEST MOVIES SECTION -->
     <div class="section">
         <div class="container">
             <div class="section-header">
@@ -229,5 +264,4 @@
         </div>
     </div>
     <!-- END LATEST CARTOONS SECTION -->
-
 @endsection

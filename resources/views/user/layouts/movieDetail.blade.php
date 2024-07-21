@@ -62,11 +62,43 @@
                                 <h3>{{ $movie->name }}</h3>
                                 <span>Director - {{ $movie->director }}</span>
                             </div>
-                            <div class="anime__details__rating">
+                            <div class="anime__details__rating" style="display: flex">
                                 <div class="rating">
                                     <p href="#"><i class="fa fa-star me-5"></i> {{ $movie->rating }}</p>
 
                                 </div>
+                                @if (Auth::user())
+                                    <div class="movie-favourate" style="margin-left:10px; border-radius: 50%;">
+                                        {{-- <img style="width: 30px; height: 30px;" src="{{ asset('images/pink-heart.png') }}" alt=""> --}}
+                                        @if (auth()->user()->favorites()->where('movie_id', $movie->id)->exists())
+                                        <form action="{{ route('movies.deleteFavorite') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="movieId" value="{{ $movie->id }}">
+                                            <button class="favorite-button1" type="submit"
+                                                style=" background-image: url('{{ asset('images/pink-heart.png') }}');
+                                                            background-size: cover;
+                                                            background-color: black;
+                                                            width:30px;
+                                                            height: 30px;"
+                                                data-movie-id="{{ $movie->id }}">
+                                            </button>
+                                        </form>
+                                        @else
+                                        <form action="{{ route('movies.addFavorite') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="movieId" value="{{ $movie->id }}">
+                                            <button class="favorite-button1" type="submit"
+                                                style=" background-image: url('{{ asset('images/white-heart.png') }}');
+                                                            background-size: cover;
+                                                            background-color: black;
+                                                            width:30px;
+                                                            height: 30px;"
+                                                data-movie-id="{{ $movie->id }}">
+                                            </button>
+                                        </form>
+                                        @endif
+                                    </div>
+                                @endif
 
                             </div>
                             <p>{{ $movie->description }}</p>
@@ -162,18 +194,61 @@
         </div>
     </section>
     <!-- Anime Section End -->
-
-
-    {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/mixitup.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/player.js') }}"></script> --}}
-
 </body>
+
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+{{-- <script>
+
+    var favoriteHeartUrl = '{{ asset('images/white-heart.png') }}';
+    var unfavoriteHeartUrl = '{{ asset('images/pink-heart.png') }}';
+
+
+    $(document).ready(function() {
+        $('.favorite-button1').click(function(event) {
+            event.preventDefault();
+
+            var button = $(this);
+            var movieId = button.data('movie-id');
+            var isFavorited = button.css('background-image').includes('pink-heart.png');
+            var url = isFavorited ? 'user/movies/' + movieId + 'unfavorite' : 'user/movies/' +
+                movieId +
+                '/favorite';
+
+            console.log(url);
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.status === 'favorited') {
+                        button.css('background-image', 'url(' + unfavoriteHeartUrl + ')');
+                    } else if (response.status === 'unfavorited') {
+                        button.css('background-image', 'url(' + favoriteHeartUrl + ')');
+                        // Optionally remove the button if unfavorited
+                        // if (window.location.pathname === 'user/movies/favorites') {
+                        //     console.log('hello');
+                        //     button.closest('.col-md-3')
+                        // .remove(); // Remove the movie card from the DOM
+                        // }
+                    }
+                    // if (url.includes('unfavorite')) {
+                    //     button.closest('.col-md-3')
+                    // .remove(); // Remove the movie card from the DOM
+                    // }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', status, error);
+                }
+            });
+        });
+    });
+</script> --}}
 
 </html>
 

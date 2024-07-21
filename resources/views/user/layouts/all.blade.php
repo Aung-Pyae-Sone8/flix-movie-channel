@@ -17,9 +17,9 @@
                                         {{ $movie->name }}
                                     </div>
                                     @if (Auth::user())
-                                        <input type="hidden" id="userId" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" class="userId" value="{{ Auth::user()->id }}">
                                     @endif
-                                    <input type="hidden" id="movieId" value="{{ $movie->id }}">
+                                    <input type="hidden" class="movieId" value="{{ $movie->id }}">
                                     <div class="movie-infos">
                                         <div class="movie-info">
                                             <div class="movie-info">
@@ -36,15 +36,22 @@
                                                 <span>{{ $movie->type }}</span>
                                             </div>
                                         </div>
-                                        <div class="movie-favourate"
-                                            style="position: absolute; margin-left:22em; margin-bottom:50px; border-radius: 50%;">
-                                            {{-- <img style="width: 30px; height: 30px;" src="{{ asset('images/pink-heart.png') }}" alt=""> --}}
-                                            <button class="addFavourate" type="button"
-                                                style="width: 50px; height: 50px; padding: 10px; background-color: black; outline: none;">
-                                                <img style="margin-top:10px; margin-left:10px;"
-                                                    src="{{ asset('images/pink-heart.png') }}" alt="">
-                                            </button>
-                                        </div>
+                                        @if (Auth::user())
+                                            <div class="movie-favourate"
+                                                style=" position: absolute; margin-left:85%;
+                                                        margin-bottom:10px; border-radius: 50%;">
+                                                {{-- <img style="width: 30px; height: 30px;" src="{{ asset('images/pink-heart.png') }}" alt=""> --}}
+                                                <button class="favorite-button" type="button"
+                                                    style=" background-image: url('{{ auth()->user()->favorites()->where('movie_id', $movie->id)->exists() ? asset('images/pink-heart.png') : asset('images/white-heart.png') }}');
+                                                            background-size: cover;
+                                                            background-color: black;
+                                                            width:30px;
+                                                            height: 30px;"
+                                                    data-movie-id="{{ $movie->id }}"
+                                                >
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </a>

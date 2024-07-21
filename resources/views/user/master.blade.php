@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         Flix
     </title>
@@ -54,6 +55,9 @@
                     <li><a href="{{ route('user#cartoon') }}">Cartoon</a></li>
                     <li><a href="{{ route('user#movie') }}">Movies</a></li>
                     <li><a href="{{ route('user#series') }}">Series</a></li>
+                    @if (Auth::user())
+                        <li><a href="{{ route('movies.favorites') }}">Favorites</a></li>
+                    @endif
                     <li>
                         @if (Auth::user())
                             <a href="{{ route('user#profile') }}">
@@ -180,6 +184,9 @@
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3./jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <!-- OWL CAROUSEL -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
@@ -199,32 +206,73 @@
 </body>
 @yield('scriptSource')
 <script>
+    // $(document).ready(function() {
+    //     $('.addFavourate').click(function() {
+    //         console.log('hello world');
+    //         event.preventDefault();
+    //         $source = {
+    //             // 'userId': $(this).closest('.col-3').find('.userId').val(),
+    //             'movieId': $(this).closest('.col-3').find('.movieId').val(),
+    //             'status': true,
+    //         };
+    //         console.log($source);
+
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: 'http://127.0.0.1:8000/user/ajax/addFavourate',
+    //             // headers: {
+    //             //     'Authorization': 'Bearer YOUR_API_TOKEN'
+    //             // },
+    //             data: $source,
+    //             dataType: 'json'
+    //         })
+    //     })
+    // })
+
+    var favoriteHeartUrl = '{{ asset('images/white-heart.png') }}';
+    var unfavoriteHeartUrl = '{{ asset('images/pink-heart.png') }}';
+
+
     $(document).ready(function() {
-        $('.addFavourate').click(function() {
-            console.log('hello world');
+        $('.favorite-button').click(function(event) {
             event.preventDefault();
-            $source = {
-                // 'userId': $('#userId').val(),
-                'movieId': $('#movieId').val(),
-                'status': true
-            };
-            console.log($source);
+
+            var button = $(this);
+            var movieId = button.data('movie-id');
+            var isFavorited = button.css('background-image').includes('pink-heart.png');
+            var url = isFavorited ? 'user/movies/' + movieId + '/unfavorite' : 'user/movies/' +
+                movieId +
+                '/favorite';
 
             $.ajax({
-                type: 'get',
-                url: 'http://localhost:8000/user/ajax/addFavourate',
+                type: 'POST',
+                url: url,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: $source,
                 success: function(response) {
-                    if (response.status == 'success') {
-                        console.log('success');
+                    if (response.status === 'favorited') {
+                        button.css('background-image', 'url(' + unfavoriteHeartUrl + ')');
+                    } else if (response.status === 'unfavorited') {
+                        button.css('background-image', 'url(' + favoriteHeartUrl + ')');
+                        // Optionally remove the button if unfavorited
+                        // if (window.location.pathname === 'user/movies/favorites') {
+                        //     console.log('hello');
+                        //     button.closest('.col-md-3')
+                        // .remove(); // Remove the movie card from the DOM
+                        // }
                     }
+                    // if (url.includes('unfavorite')) {
+                    //     button.closest('.col-md-3')
+                    // .remove(); // Remove the movie card from the DOM
+                    // }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', status, error);
                 }
-            })
-        })
-    })
+            });
+        });
+    });
 </script>
 
 </html>

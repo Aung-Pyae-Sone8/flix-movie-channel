@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
+use App\Models\RecentView;
 use App\Models\admin\Genre;
 use App\Models\admin\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,6 +54,7 @@ class MovieController extends Controller
         $genre = Genre::select('name')->where('id', $data->genre_id)->first();
         // dd($genre->name);
         $data['genre_id'] = $genre->name;
+
         // dd($data);
         return view('admin.layouts.movie.detail', compact('data'));
     }
@@ -99,6 +103,56 @@ class MovieController extends Controller
     public function delete($id) {
         Movie::where('id', $id)->delete();
         return redirect()->route('movie#list')->with(['deleteSuccess'=>'Successfully deleted...']);
+    }
+
+    // favorite
+    public function favorite(Request $request, Movie $movie)
+    {
+        $user = Auth::user();
+        if (!$user->favorites()->where('movie_id', $movie->id)->exists()) {
+            $user->favorites()->attach($movie->id);
+        }
+
+        return response()->json(['status' => 'favorited']);
+    }
+
+    // unfavorite
+    public function unfavorite(Request $request, Movie $movie)
+    {
+        $user = Auth::user();
+        if ($user->favorites()->where('movie_id', $movie->id)->exists()) {
+            $user->favorites()->detach($movie->id);
+        }
+
+        return response()->json(['status' => 'unfavorited']);
+    }
+
+    // favorite list page
+    public function favorites()
+    {
+        $user = Auth::user();
+        $movies = $user->favorites()->get();
+
+        return view('user.layouts.favorites', compact('movies'));
+    }
+
+    // add favorite
+    public function addFavorite(Request $request) {
+        $data = [
+            'movie_id' => $request->movieId,
+            'user_id' => Auth::user()->id
+        ];
+        Favorite::create($data);
+
+        return back();
+    }
+
+    // delete from favorite
+    public function deleteFavorite(Request $request) {
+        $movieId = $request->movieId;
+        Favorite::where('user_id', Auth::user()->id)->where('movie_id', $movieId)->delete();
+
+        return back();
     }
 
     // movie creation validation check

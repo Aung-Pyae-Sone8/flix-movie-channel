@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Payment;
+use App\Models\RecentView;
 use App\Models\admin\Genre;
 use App\Models\admin\Movie;
 use Illuminate\Http\Request;
@@ -20,8 +22,16 @@ class UserController extends Controller
         $movies = Movie::where('type', 'movie')->orderBy('created_at','desc')->take(8)->get();
         $series = Movie::where('type', 'series')->orderBy('created_at','desc')->take(8)->get();
         $cartoons = Movie::where('type', 'cartoon')->orderBy('created_at','desc')->take(8)->get();
+        if(Auth::user()) {
+            $user = Auth::user();
+        $recentViews = $user->recentViews()->with('movie')->latest()->get();
+            $data = compact('movies','series','cartoons','recentViews');
+        }else {
+            $data = compact('movies','series','cartoons');
+        }
+
         // dd($movies);
-        return view('user.layouts.home',compact('movies','series','cartoons'));
+        return view('user.layouts.home', $data);
     }
 
     // admin dashboard
@@ -95,6 +105,12 @@ class UserController extends Controller
         $movie = Movie::where('id', $id)->first();
         $genre = Genre::where('id', $movie->genre_id)->first();
         $genreName = $genre->name;
+
+        $movieId = Movie::findOrFail($id);
+        if (Auth::check()) {
+            $userId = Auth::id();
+            RecentView::addRecentView($userId, $movieId->id);
+        }
         // dd($movie);
         $comments = Comment::select('comments.*', 'users.name as user_name', 'users.image as user_image')
                         ->where('movie_id', $id)
@@ -200,9 +216,20 @@ class UserController extends Controller
     // accept payment
     public function accept(Request $request) {
         $role['type'] = 'premium';
+        $role['premium_expires_at'] = Carbon::now()->addMinute();
         User::where('id', $request->userId)->update($role);
         return redirect()->route('user#list');
     }
+
+    // check and update user type
+    public function checkAndUpdateUserType(User $user)
+{
+    if ($user->type == 'premium' && $user->isPremiumExpired()) {
+        $user->type = 'free';
+        $user->premium_expires_at = null;
+        $user->save();
+    }
+}
 
     // reject payment
     public function reject(Request $request) {

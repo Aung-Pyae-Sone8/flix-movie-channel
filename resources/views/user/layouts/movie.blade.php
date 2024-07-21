@@ -30,7 +30,23 @@
                                         <div class="movie-info">
                                             <span>{{ $movie->type }}</span>
                                         </div>
+                                        @if (Auth::user())
+                                        <div class="movie-favourate"
+                                            style=" position: absolute; margin-left:85%;
+                                                        margin-bottom:10px; border-radius: 50%;">
+                                            {{-- <img style="width: 30px; height: 30px;" src="{{ asset('images/pink-heart.png') }}" alt=""> --}}
+                                            <button class="favorite-button" type="button"
+                                                style=" background-image: url('{{ auth()->user()->favorites()->where('movie_id', $movie->id)->exists()? asset('images/pink-heart.png'): asset('images/white-heart.png') }}');
+                                                            background-size: cover;
+                                                            background-color: black;
+                                                            width:30px;
+                                                            height: 30px;"
+                                                data-movie-id="{{ $movie->id }}">
+                                            </button>
+                                        </div>
+                                    @endif
                                     </div>
+
                                 </div>
                             </a>
                         </div>

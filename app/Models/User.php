@@ -3,12 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
+use App\Models\RecentView;
+use App\Models\admin\Movie;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -17,6 +20,21 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Movie::class, 'favorites');
+    }
+
+    public function recentViews()
+    {
+        return $this->hasMany(RecentView::class);
+    }
+
+    public function isPremiumExpired()
+    {
+        return $this->premium_expires_at && Carbon::now()->greaterThan($this->premium_expires_at);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +72,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'premium_expires_at' => 'datetime',
     ];
 
     /**

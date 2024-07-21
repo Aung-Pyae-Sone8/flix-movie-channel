@@ -27,6 +27,10 @@ Route::middleware('admin_auth')->group(function () {
 Route::get('/', [AuthController::class, 'welcome'])->name('welcome');
 Route::get('loginPage', [AuthController::class, 'loginPage'])->name('auth#loginPage');
 Route::get('registerPage', [AuthController::class, 'registerPage'])->name('auth#registerPage');
+
+
+});
+
 Route::get('home', [UserController::class, 'userHome'])->name('user#home');
             Route::get('all', [UserController::class, 'all'])->name('user#all');
             Route::get('cartoon', [UserController::class, 'cartoon'])->name('user#cartoon');
@@ -34,13 +38,12 @@ Route::get('home', [UserController::class, 'userHome'])->name('user#home');
             Route::get('series', [UserController::class, 'series'])->name('user#series');
             Route::get('movie/details/{id}', [UserController::class, 'movieDetail'])->name('user#movieDetail');
 
-});
-
 Route::middleware(['auth'])->group(function () {
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->name('dashboard');
+
 
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
@@ -99,7 +102,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('payment', [UserController::class, 'payment'])->name('user#payment');
             Route::post('comment/post', [UserController::class, 'postComment'])->name('user#postComment');
 
-            Route::get('ajax/addFavourate', [AjaxController::class, 'addFavourate'])->name('ajax#addFavourate');
+            Route::post('/movies/{movie}/favorite', [MovieController::class, 'favorite'])->name('movies.favorite');
+            Route::post('/movies/{movie}/unfavorite', [MovieController::class, 'unfavorite'])->name('movies.unfavorite');
+            Route::get('/movies/favorites', [MovieController::class, 'favorites'])->name('movies.favorites');
+            Route::post('/movies/unfavorite', [MovieController::class, 'deleteFavorite'])->name('movies.deleteFavorite');
+            Route::post('/movies/favorite', [MovieController::class, 'addFavorite'])->name('movies.addFavorite');
         });
     });
 
