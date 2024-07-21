@@ -216,7 +216,7 @@ class UserController extends Controller
     // accept payment
     public function accept(Request $request) {
         $role['type'] = 'premium';
-        $role['premium_expires_at'] = Carbon::now()->addMinute();
+        $role['premium_expires_at'] = Carbon::now()->addMonth();
         User::where('id', $request->userId)->update($role);
         return redirect()->route('user#list');
     }
